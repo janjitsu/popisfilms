@@ -1,0 +1,52 @@
+import './App.css';
+import {useState, useEffect} from 'react';
+
+const Person = (props) => {
+    return (
+        <>
+            <h1> Name: {props.name ? props.name : 'Guest'}</h1>
+            <h2> Last Name: {props.lastName ? props.lastName : 'User'}</h2>
+            <h2>Age: {props.age ? props.age : '99'}</h2>
+        </>
+    )
+}
+
+const App = () => {
+    const name = 'Jan';
+    const isLoggedIn = true;
+    const [counter, setCounter] = useState(0);
+
+    useEffect(() => {
+        setCounter(100);
+    }, []);
+
+    useEffect(() => {
+        console.log('counter is ' + counter);
+    }, [counter]);
+
+    return (
+        <div className="App">
+            <Person name={'Jan'} lastName={'Silva'} age={'35'}/>
+            <Person name={'Natalija'} lastName={'Petrić'} age={'28'}/>
+            <Person name={'Glauro'} lastName={'Quintão'} age={'31'}/>
+            <h1> Hello, {isLoggedIn ? name : "Guest"}! </h1>
+            {isLoggedIn ? (
+                <>
+                    You are logged in
+                </>
+            ): (
+                <>
+                    <h1>Welcome!</h1>
+                    <h2>Please Login!</h2>
+                </>
+            )}
+            <p>
+                <button onClick={() => setCounter((prevCount)=> prevCount-1)}>-</button>
+                <h1>{counter}</h1>
+                <button onClick={() => setCounter((prevCount)=> prevCount+1)}>+</button>
+            </p>
+        </div>
+    );
+}
+
+export default App;
