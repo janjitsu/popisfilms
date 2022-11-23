@@ -1,7 +1,7 @@
 import './App.css';
-import SearchIcon from './search.svg';
 import {useState, useEffect} from 'react';
 import MovieCard from './components/MovieCard/MovieCard.jsx';
+import SearchBar from './components/SearchBar/SearchBar.jsx';
 
 const API_KEY = '4316022';
 const API_URL = `http://www.omdbapi.com/?apiKey=${API_KEY}`;
@@ -26,18 +26,11 @@ const App = () => {
     return (
         <div className="app">
             <h1>MovieLand</h1>
-            <div className="search">
-                <input
-                    placeholder="Search for movies"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <img
-                    src={ SearchIcon }
-                    alt="search"
-                    onClick={() => searchMovies(searchTerm)}
-                />
-            </div>
+            <SearchBar
+                searchTerm={searchTerm}
+                handleOnChange={(e) => setSearchTerm(e)}
+                handleOnClick={(e) => searchMovies(searchTerm)}
+            />
             {movies?.length > 0 ? (
                 <div className="container">
                     {movies.map((movie) => (
