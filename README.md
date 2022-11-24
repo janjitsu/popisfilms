@@ -10,7 +10,7 @@ TODO
 
 [] create user with firebase and manage session
 
-[] define routes for authentication and search
+[x] define routes for authentication and search
 
 [] add feature to save favorite movies
 
