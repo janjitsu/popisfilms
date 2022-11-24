@@ -2,25 +2,21 @@ import './App.css';
 import {useState, useEffect} from 'react';
 import MovieCard from './components/MovieCard/MovieCard.jsx';
 import SearchBar from './components/SearchBar/SearchBar.jsx';
+import {searchMovies} from './services/search.js';
 
-const API_KEY = '4316022';
-const API_URL = `http://www.omdbapi.com/?apiKey=${API_KEY}`;
 
 const App = () => {
-    const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-
-    const searchMovies = async (title) => {
-        const response = await fetch(`${API_URL}&s=${title}`)
-        const data = await response.json();
-
-        console.log(data);
-        setMovies(data.Search);
+    const [movies, setMovies] = useState([]);
+    const startingSearch = 'Guardians of the Galaxy';
+    const getSearchResult = async (title) => {
+        const result = await searchMovies(title);
+        setMovies(result);
     }
 
     useEffect(() => {
-        searchMovies('Guardians of the Galaxy');
-        setSearchTerm('Guardians of the Galaxy');
+        getSearchResult(startingSearch);
+        setSearchTerm(startingSearch);
     },[])
 
     return (
@@ -29,12 +25,12 @@ const App = () => {
             <SearchBar
                 searchTerm={searchTerm}
                 handleOnChange={(e) => setSearchTerm(e)}
-                handleOnClick={(e) => searchMovies(searchTerm)}
+                handleOnClick={(e) => getSearchResult(searchTerm)}
             />
             {movies?.length > 0 ? (
                 <div className="container">
                     {movies.map((movie) => (
-                        <MovieCard movie={movie} />
+                        <MovieCard movie={movie} key={movie.imdbID}/>
                     ))}
                 </div>
             ) : (
