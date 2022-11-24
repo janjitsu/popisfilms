@@ -1,11 +1,11 @@
-import './App.css';
+import './Search.css';
 import {useState, useEffect} from 'react';
-import MovieCard from './components/MovieCard/MovieCard.jsx';
-import SearchBar from './components/SearchBar/SearchBar.jsx';
-import {searchMovies} from './services/search.js';
+import MovieCard from 'components/MovieCard/MovieCard.jsx';
+import SearchBar from 'components/SearchBar/SearchBar.jsx';
+import {searchMovies} from 'services/search.js';
 
 
-const App = () => {
+const Search = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [movies, setMovies] = useState([]);
     const startingSearch = 'Guardians of the Galaxy';
@@ -42,4 +42,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default Search;
