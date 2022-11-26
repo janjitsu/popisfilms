@@ -5,9 +5,46 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-roboto);
+  background-color: #212426;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-roboto: "Roboto Slab", serif;
+  --font-raleway: "Raleway", sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 0.9px;
+  background: linear-gradient(
+    90deg,
+    rgba(249, 211, 180, 1) 0%,
+    rgba(249, 211, 180, 0) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
