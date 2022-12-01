@@ -1,5 +1,9 @@
+.loading {
+    margin-top: 10rem;
+    color: #a1a1a1;
+    font-size: 1.2rem;
+}
 .profile {
-    width: 60%;
     border: 0.2rem solid black;
     margin: 1rem;
     padding: 1rem;
@@ -15,22 +19,36 @@
     text-align: center;
 }
 
+.side-box {
+    width: 100%;
+    display: grid;
+}
+
 .description {
     margin: 1rem auto;
     color: #a1a1a1;
     font-style: italic;
 }
 
-.share {
+.actions {
     order: 1;
     flex: 0 1 auto;
-    align-self: flex-end;
+    align-self: end;
+    background-color: #4d4e4f;
+    justify-self: end;
+    border-radius: 12px;
 }
 
-.share img {
-  width: 25px;
-  height: 25px;
+.actions input {
+  width: 40px;
+  height: 40px;
+  margin: 0.5rem;
   cursor: pointer;
+  fill: orange;
+}
+
+.avatar{
+    width: 8rem;
 }
 
 .avatar-img{
