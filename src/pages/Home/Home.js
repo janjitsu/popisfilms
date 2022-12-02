@@ -1,8 +1,7 @@
 import './Home.css';
-import ShareIcon from './share.svg';
-import AddIcon from './add.svg';
-import LogoutIcon from './logout.svg';
 import MovieCard from 'components/MovieCard/MovieCard.jsx';
+import Profile from 'components/User/Profile/Profile.jsx';
+import Loader from 'components/Loader/Loader.jsx';
 /** providers */
 import { useSession } from "providers/Session";
 import {useState, useEffect} from 'react';
@@ -12,6 +11,7 @@ const Home = () => {
     const [state, setState] = useState({
         loading: true,
     });
+
     const favorites = [
         {
             "Title": "Belle de Jour",
@@ -30,39 +30,17 @@ const Home = () => {
     ]
 
     useEffect(() => {
-      setTimeout(()=>{
-          setState({ ...state, loading: false});
-      }, 1000)
+      setState({ ...state, loading: false});
     }, [user]);
 
 
     return (
         <div className="app">
             <h1>MovieLand</h1>
-            {state.loading ? (
-                <div className="loading">⌛Loading...</div>
-            ) : (
-                <>
+            <Loader loading={state.loading}>
                 {user?.displayName ? (
                     <>
-                        <div className="profile">
-                            <div className="avatar">
-                                <div className="avatar-img">
-                                    <img src={user.photoURL} alt={user.displayName}/>
-                                </div>
-                                <p>{user.displayName}</p>
-                            </div>
-                            <div className="side-box">
-                                <div className="description">
-                                    Passionate about horror movies born in Brazil
-                                </div>
-                                <div className="actions">
-                                    <input type="image" src={AddIcon} alt="Add Favorite Movies" title="Add Favorite Movies"/>
-                                    <input type="image" src={ShareIcon} alt="Share your Profile" title="Share your Profile"/>
-                                    <input type="image" src={LogoutIcon} alt="Logout" title="Logout" onClick={()=>logoutMethod()}/>
-                                </div>
-                            </div>
-                        </div>
+                        <Profile user={user} logoutAction={logoutMethod} />
                         <div className="favorites">
                             <h1>{user.displayName}'s Favorite Movies</h1>
                             {favorites?.length > 0 ? (
@@ -88,8 +66,8 @@ const Home = () => {
                         </button>
                     </>
                 )}
-                </>
-            )}
+
+            </Loader>
         </div>
     )
 }
