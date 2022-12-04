@@ -3,7 +3,8 @@ import AddIcon from './add.svg';
 import LogoutIcon from './logout.svg';
 
 
-const Profile = (props, {user,logoutAction}) => {
+const Profile = (props, {user,logoutAction,addFavoritesAction}) => {
+    console.log(props);
     return (
         <div className="profile">
             <div className="avatar">
@@ -17,7 +18,7 @@ const Profile = (props, {user,logoutAction}) => {
                     Passionate about horror movies born in Brazil
                 </div>
                 <div className="actions">
-                    <input type="image" src={AddIcon} alt="Add Favorite Movies" title="Add Favorite Movies"/>
+                    <input type="image" src={AddIcon} alt="Add Favorite Movies" title="Add Favorite Movies" onClick={()=>props.addFavoritesAction()}/>
                     <input type="image" src={ShareIcon} alt="Share your Profile" title="Share your Profile"/>
                     <input type="image" src={LogoutIcon} alt="Logout" title="Logout" onClick={()=>props.logoutAction()}/>
                 </div>

@@ -19,7 +19,7 @@ const AppRoutes = () => {
     <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/add" element={<Search />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     </BrowserRouter>
