@@ -7,13 +7,11 @@ import Loader from 'components/Loader/Loader.jsx';
 import { useSession } from "providers/Session";
 import {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
+import {getFavorites} from "services/favorites.js";
 /** remove me **/
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
 
 
 const Home = () => {
-  const db = firebase.firestore();
   const { user, loginMethod, logoutMethod } = useSession();
   const [state, setState] = useState({ loading: true });
   const [favorites, setFavorites] = useState([]);
@@ -36,25 +34,15 @@ const Home = () => {
     navigate('/add');
   }
 
-  const getFavorites = async () => {
-    db.collection("users")
-      .doc(user.uid)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          setFavorites(doc.data()['favorites']);
-          console.log("< GET FAVORITES > ", doc.data());
-        }
-      })
-      .catch((e) => {
-        console.warn("< GET FAVORITES : ERROR > ", e);
-      });
-  };
-
   useEffect(() => {
-    getFavorites().then(() => {
+    if (user.displayName  !== null) {
+      getFavorites(user).then((movies) => {
+        setFavorites(movies);
+        setState({ ...state, loading: false});
+      })
+    } else {
       setState({ ...state, loading: false});
-    })
+    }
   }, [user]);
 
 
