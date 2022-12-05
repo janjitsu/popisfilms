@@ -1,7 +1,7 @@
 import React from 'react';
 import './MovieCard.css';
 
-const MovieCard = (props) => {
+const MovieCard = (props,{movie, decoration, handleOnClick}) => {
     const placeholder = {
         Year: '9999',
         Poster: 'https://via.placeholder.com/400',
@@ -11,9 +11,12 @@ const MovieCard = (props) => {
     }
 
     return (
-        <div className="movie">
+        <div className="movie" onClick={() => props?.handleOnClick()}>
             <div>
                 <p>{props?.movie?.Year || placeholder.Year}</p>
+                {props?.decoration ? (
+                    <span><a href="#">{props.decoration}</a></span>
+                ):null}
             </div>
             <div>
                 <img
