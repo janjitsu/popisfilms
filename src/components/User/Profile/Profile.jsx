@@ -1,25 +1,20 @@
 import ShareIcon from './share.svg';
 import AddIcon from './add.svg';
 import LogoutIcon from './logout.svg';
+import Avatar from 'components/User/Avatar/Avatar.jsx';
 
 
 const Profile = (props, {user,logoutAction,addFavoritesAction}) => {
-    console.log(props);
     return (
         <div className="profile">
-            <div className="avatar">
-                <div className="avatar-img">
-                    <img src={props.user.photoURL} alt={props.user.displayName}/>
-                </div>
-                <p>{props.user.displayName}</p>
-            </div>
+            <Avatar user={props.user}/>
             <div className="side-box">
                 <div className="description">
-                    Passionate about horror movies born in Brazil
+                    Passionate about horror movies, born in Brazil.
                 </div>
                 <div className="actions">
                     <input type="image" src={AddIcon} alt="Add Favorite Movies" title="Add Favorite Movies" onClick={()=>props.addFavoritesAction()}/>
-                    <input type="image" src={ShareIcon} alt="Share your Profile" title="Share your Profile"/>
+                    <input type="image" src={ShareIcon} alt="Share your Profile (TBD)" title="Share your Profile"/>
                     <input type="image" src={LogoutIcon} alt="Logout" title="Logout" onClick={()=>props.logoutAction()}/>
                 </div>
             </div>
