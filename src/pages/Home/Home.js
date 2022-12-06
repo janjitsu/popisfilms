@@ -35,7 +35,8 @@ const Home = () => {
   }
 
   useEffect(() => {
-    if (user.id !== undefined) {
+    console.log(user);
+    if (user.uid !== undefined) {
       getFavorites(user)
         .then((movies) => {
           setFavorites(movies);

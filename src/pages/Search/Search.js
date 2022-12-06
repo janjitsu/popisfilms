@@ -70,7 +70,7 @@ const Search = () => {
             <MovieCard
               movie={movie}
               key={movie.imdbID}
-              decoration={isFavorite(movie) ? "★ Favoritos" : "☆ Adicionar" }
+              decoration={isFavorite(movie) ? "★ Favorites" : "☆ Add to Favorites" }
               handleOnClick={isFavorite(movie) ? () => removeFromFavorites(movie) : () => addToFavorites(movie) }
               />
           ))}
