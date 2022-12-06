@@ -1,5 +1,5 @@
 const API_KEY = '4316022';
-const API_URL = `http://www.omdbapi.com/?apiKey=${API_KEY}`;
+const API_URL = `https://www.omdbapi.com/?apiKey=${API_KEY}`;
 
 const searchMovies = (title) =>
     new Promise( async (resolve) => {
