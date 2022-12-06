@@ -7,7 +7,7 @@ import Avatar from 'components/User/Avatar/Avatar.jsx';
 const Profile = (props, {user,logoutAction,addFavoritesAction}) => {
     return (
         <div className="profile">
-            <Avatar user={props.user}/>
+            <Avatar user={props.user} text={props.user.displayName}/>
             <div className="side-box">
                 <div className="description">
                     Passionate about horror movies, born in Brazil.
