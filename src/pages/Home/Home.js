@@ -35,11 +35,16 @@ const Home = () => {
   }
 
   useEffect(() => {
-    if (user.displayName  !== null) {
-      getFavorites(user).then((movies) => {
-        setFavorites(movies);
-        setState({ ...state, loading: false});
-      })
+    if (user.id !== undefined) {
+      getFavorites(user)
+        .then((movies) => {
+          setFavorites(movies);
+          setState({ ...state, loading: false});
+        })
+        .catch((e) => {
+          console.log("error getting favorites")
+          setState({ ...state, loading: false});
+        });
     } else {
       setState({ ...state, loading: false});
     }

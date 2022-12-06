@@ -24,3 +24,5 @@ yarn-error.log*
 
 #credentials
 src/credentials.js
+#firebase
+.firebase/

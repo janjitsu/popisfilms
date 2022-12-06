@@ -6,23 +6,11 @@ import AppRoutes from './routes/AppRoutes.js';
 /** firebase */
 import credentials from "./credentials";
 import firebase from "firebase/compat/app";
-import "firebase/compat/functions";
-import "firebase/compat/firestore";
 /** provider */
 import { SessionProvider } from "providers/Session";
 
 /** start */
-const app = firebase.initializeApp(credentials);
-/*
-if (window.location.hostname === "localhost") {
-  app.auth().useEmulator("http://localhost:9099");
-  app.firestore().settings({
-    host: "localhost:9098",
-    ssl: false,
-  });
-}
-*/
-
+firebase.initializeApp(credentials);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
