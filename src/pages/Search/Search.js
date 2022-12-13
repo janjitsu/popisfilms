@@ -14,7 +14,6 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const startingSearch = '';
 
   const getSearchResult = async (title) => {
     const result = await searchMovies(title);

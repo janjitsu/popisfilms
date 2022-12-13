@@ -5,7 +5,7 @@ import Profile from 'components/User/Profile/Profile.jsx';
 import Loader from 'components/Loader/Loader.jsx';
 /** providers */
 import { useSession } from "providers/Session";
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {useNavigate} from "react-router-dom";
 import {getFavorites} from "services/favorites.js";
 /** remove me **/
@@ -17,40 +17,30 @@ const Home = () => {
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
-  /*
-  const addFavorites = async () => {
-    db.collection("users")
-      .doc(user.uid)
-      .set({
-        favorites: favorites
-      })
-      .then((response) => {
-        console.log("< ADD FAVORITES : DONE > ", response);
-      })
-      .catch((e) => console.warn("< ADD FAVORITES : ERROR > ", e));
-  };
-  */
   const addFavorites = () => {
     navigate('/add');
   }
 
+  const finishLoading = useCallback(() => {
+    setState({ ...state, loading: false});
+  },[state]);
+
+
   useEffect(() => {
-    console.log(user);
     if (user.uid !== undefined) {
       getFavorites(user)
         .then((movies) => {
           setFavorites(movies);
-          setState({ ...state, loading: false});
+          finishLoading()
         })
         .catch((e) => {
           console.log("error getting favorites")
-          setState({ ...state, loading: false});
+          finishLoading()
         });
     } else {
-      setState({ ...state, loading: false});
+      finishLoading()
     }
-  }, [user]);
-
+  }, [user, finishLoading]);
 
   return (
     <div className="app">

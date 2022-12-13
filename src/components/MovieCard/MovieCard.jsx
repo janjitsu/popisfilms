@@ -15,7 +15,7 @@ const MovieCard = (props,{movie, decoration, handleOnClick}) => {
             <div>
                 <p>{props?.movie?.Year || placeholder.Year}</p>
                 {props?.decoration ? (
-                    <span><a href="#">{props.decoration}</a></span>
+                    <span><a href="#decoration">{props.decoration}</a></span>
                 ):null}
             </div>
             <div>
