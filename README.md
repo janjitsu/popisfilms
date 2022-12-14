@@ -8,7 +8,7 @@ Running
 =======
 
 ```
-npm start
+npm start --prefix ./frontend
 ```
 
 TODO

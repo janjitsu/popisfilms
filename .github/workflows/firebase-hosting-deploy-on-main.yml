@@ -1,4 +1,4 @@
-name: Deploy to Firebase Hosting on push to Main
+name: Deploy Frontend to Firebase Hosting on push to Main
 on:
   push:
     branches:
@@ -7,8 +7,11 @@ on:
     branches:
       - main
 jobs:
-  build_and_preview:
+  build_and_deploy_frontend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
       - uses: actions/checkout@v2
       - env:

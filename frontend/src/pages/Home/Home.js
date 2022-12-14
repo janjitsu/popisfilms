@@ -27,6 +27,7 @@ const Home = () => {
 
 
   useEffect(() => {
+    console.log(user);
     if (user.uid !== undefined) {
       getFavorites(user)
         .then((movies) => {
