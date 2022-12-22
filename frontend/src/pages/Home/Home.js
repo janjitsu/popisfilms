@@ -7,7 +7,7 @@ import Loader from 'components/Loader/Loader.jsx';
 import { useSession } from "providers/Session";
 import {useState, useEffect, useCallback} from 'react';
 import {useNavigate} from "react-router-dom";
-import {getFavorites} from "services/favorites.js";
+import {getFavorites} from "services/backend.js";
 /** remove me **/
 
 
