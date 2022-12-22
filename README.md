@@ -4,8 +4,8 @@ Frontend
 Configuring firebase
 --------------------
 
-* add `src/credentails.js` with firebase config, copy it from
-`src/credentails.js.dist`
+* add `frontend/src/credentails.js` with firebase config, copy it from
+`frontend/src/credentails.js.dist`
 
 Running
 -------

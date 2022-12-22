@@ -1,0 +1,13 @@
+FROM golang:1.19-alpine AS build
+
+WORKDIR /src/
+COPY . go.* /src/
+RUN go mod download
+COPY . .
+WORKDIR /src/cmd/web/
+RUN CGO_ENABLED=0 go build -o /bin/app
+
+FROM scratch
+COPY --from=build /bin/app /bin/app
+ENTRYPOINT ["/bin/app"]
+

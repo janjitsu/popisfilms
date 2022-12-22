@@ -37,11 +37,12 @@ func getFavorites(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	port := ":8080"
 	mux := http.NewServeMux()
 	mux.Handle("/favorites", jsonResponse(http.HandlerFunc(getFavorites)))
 
-	log.Print("POPISFILMS - Starting server on :4000")
+	log.Printf("POPISFILMS - Starting server on %s\n", port)
 
-	err := http.ListenAndServe(":4000", mux)
+	err := http.ListenAndServe(port, mux)
 	log.Fatal(err)
 }
