@@ -39,7 +39,7 @@ func getFavorites(w http.ResponseWriter, r *http.Request) {
 func main() {
 	port := ":8080"
 	mux := http.NewServeMux()
-	mux.Handle("/favorites", jsonResponse(http.HandlerFunc(getFavorites)))
+	mux.Handle("/favorites", withCors(jsonResponse(http.HandlerFunc(getFavorites))))
 
 	log.Printf("POPISFILMS - Starting server on %s\n", port)
 
