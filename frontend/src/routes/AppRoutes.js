@@ -1,4 +1,4 @@
-import { useEffect, useContext, useCallback } from "react";
+import { useEffect, useContext, memo } from "react";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Search from 'pages/Search/Search.js';
@@ -8,13 +8,12 @@ import { SessionContext } from "providers/Session";
 const AppRoutes = () => {
     const { checkUserLogin } = useContext(SessionContext);
 
-    const isValid = useCallback(async () => {
-        await checkUserLogin();
-    },[checkUserLogin]);
-
     useEffect(() => {
-        isValid();
-    }, [isValid]);
+      const isValid = async () => {
+          await checkUserLogin();
+      };
+      isValid();
+    }, [checkUserLogin]);
 
     return (
     <BrowserRouter>
@@ -28,4 +27,4 @@ const AppRoutes = () => {
     );
 }
 
-export default AppRoutes;
+export default memo(AppRoutes);

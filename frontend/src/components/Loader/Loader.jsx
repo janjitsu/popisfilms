@@ -1,13 +1,12 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, memo} from 'react';
 
 const Loader = (props) => {
     const [showLoading, setShowLoading] = useState(true);
-    console.log(props);
 
     useEffect(() => {
         setTimeout(() => {
-            setShowLoading(props.loading);
+            setShowLoading(false);
         },1000)
 
     }, [props.loading]);
@@ -24,4 +23,4 @@ const Loader = (props) => {
     )
 }
 
-export default Loader;
+export default memo(Loader);
