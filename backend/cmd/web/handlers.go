@@ -1,14 +1,12 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"popisfilms/internal/models"
 )
 
-func getFavorites(w http.ResponseWriter, r *http.Request) {
+func (app *application) getFavorites(w http.ResponseWriter, r *http.Request) {
 	favorites := []models.Movie{
 		{
 			Poster: "https://m.media-amazon.com/images/M/MV5BZWFlYmY2MGEtZjVkYS00YzU4LTg0YjQtYzY1ZGE3NTA5NGQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
@@ -26,11 +24,5 @@ func getFavorites(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-	b, err := json.Marshal(favorites)
-	if err != nil {
-		fmt.Printf("Error: %s", err)
-		return
-	}
-
-	w.Write([]byte(b))
+	app.render(w, http.StatusOK, favorites)
 }

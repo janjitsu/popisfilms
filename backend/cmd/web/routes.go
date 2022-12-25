@@ -7,16 +7,18 @@ import (
 	"github.com/justinas/alice"
 )
 
-func routes() http.Handler {
+func (app *application) routes() http.Handler {
 	router := httprouter.New()
 
 	router.NotFound = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+		app.notFound(w)
 	})
 
-	router.Handler(http.MethodGet, "/favorites", http.HandlerFunc(getFavorites))
+	protected := alice.New(app.requireAuthentication)
 
-	standard := alice.New(withCors, jsonResponse)
+	router.Handler(http.MethodGet, "/favorites", protected.ThenFunc(http.HandlerFunc(app.getFavorites)))
+
+	standard := alice.New(app.responseHeaders, app.logRequest, app.validateUserToken)
 
 	return standard.Then(router)
 }
