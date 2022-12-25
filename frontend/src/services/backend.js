@@ -6,7 +6,7 @@ const authHeaders = (user) =>
         resolve(
           {
             headers: {
-              'Authorizaton': 'Bearer ' + userToken
+              'Authorization': 'Bearer ' + userToken
             }
           }
         )
@@ -17,7 +17,7 @@ const getFavorites = (user) =>
         const authHeader = await authHeaders(user)
         const response = await fetch(`${BACKEND_URL}/favorites`, authHeader)
         const data = await response.json();
-        resolve(data);
+        resolve(data.result);
     });
 
 export {getFavorites};
