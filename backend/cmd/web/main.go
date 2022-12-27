@@ -7,16 +7,17 @@ import (
 	"net/http"
 	"os"
 
+	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"
 	"firebase.google.com/go/auth"
 	"google.golang.org/api/option"
 )
 
 type application struct {
-	firebaseApp  *firebase.App
-	firebaseAuth *auth.Client
-	infoLog      *log.Logger
-	errorLog     *log.Logger
+	auth      *auth.Client
+	firestore *firestore.Client
+	infoLog   *log.Logger
+	errorLog  *log.Logger
 }
 
 func main() {
@@ -37,14 +38,21 @@ func main() {
 		return
 	}
 
+	firestore, err := fb.Firestore(ctx)
+	if err != nil {
+		fmt.Printf("error getting Firestore client: %v\n", err)
+		return
+	}
+	defer firestore.Close()
+
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
 	app := &application{
-		firebaseApp:  fb,
-		firebaseAuth: auth,
-		infoLog:      infoLog,
-		errorLog:     errorLog,
+		auth:      auth,
+		firestore: firestore,
+		infoLog:   infoLog,
+		errorLog:  errorLog,
 	}
 
 	srv := &http.Server{

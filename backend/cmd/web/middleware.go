@@ -57,7 +57,7 @@ func (app *application) validateUserToken(next http.Handler) http.Handler {
 			return
 		}
 
-		tokenVerificationResult, err := app.firebaseAuth.VerifyIDToken(ctx, token)
+		tokenVerificationResult, err := app.auth.VerifyIDToken(ctx, token)
 		//@TODO if token is invalid?
 		//@TODO if token is expired?
 
