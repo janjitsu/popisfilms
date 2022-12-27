@@ -7,7 +7,8 @@ COPY . .
 WORKDIR /app/cmd/web/
 RUN CGO_ENABLED=0 go build -o /bin/app
 
+RUN ls -la
+
 FROM scratch
 COPY --from=build /bin/app /bin/app
 ENTRYPOINT ["/bin/app"]
-

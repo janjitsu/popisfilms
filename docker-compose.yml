@@ -1,18 +1,18 @@
 version: '3.8'
 services:
-  # movieland_app_local_client:
-    # container_name: movieland_app_local_client
-    # privileged: true
-    # working_dir: /app
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: ./Dockerfile
-  #   volumes:
-  #     - ./frontend:/app
-  #   # env_file:
-  #   #   - .env.development
-  #   ports:
-  #     - '3000:3000'
+  movieland_app_local_client:
+    container_name: movieland_app_local_client
+    privileged: true
+    working_dir: /app
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./frontend:/app
+    # env_file:
+    #   - .env.development
+    ports:
+      - '3000:3000'
   
   movieland_app_local_server:
     container_name: movieland_app_local_server
