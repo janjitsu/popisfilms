@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   movieland_app_local_client:
-    container_name: movieland_app_local_client
+    container_name: popisfilms_app_local_client
     privileged: true
     working_dir: /app
     build:
@@ -13,9 +13,9 @@ services:
     #   - .env.development
     ports:
       - '3000:3000'
-  
+
   movieland_app_local_server:
-    container_name: movieland_app_local_server
+    container_name: popisfilms_app_local_server
     privileged: true
     working_dir: /app
     build:

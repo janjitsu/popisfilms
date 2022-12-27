@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <div className="app">
-      <h1>MovieLand</h1>
+      <h1>PopisFilms</h1>
       <Loader>
         {user?.displayName ? (
           <>

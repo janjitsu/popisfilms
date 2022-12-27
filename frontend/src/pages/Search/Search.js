@@ -56,7 +56,7 @@ const Search = () => {
 
   return (
     <div className="app">
-      <h1>MovieLand</h1>
+      <h1>PopisFilms</h1>
       <Avatar user={user} text="Back to Profile" handleOnClick={() => goToProfile()}/>
       <SearchBar
         searchTerm={searchTerm}
