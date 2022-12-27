@@ -1,25 +1,26 @@
-Frontend
-========
+# Frontend
 
-Configuring firebase
---------------------
+## Configuring firebase
 
-* add `frontend/src/credentails.js` with firebase config, copy it from
-`frontend/src/credentails.js.dist`
+- add `frontend/src/credentails.js` with firebase config, copy it from
+  `frontend/src/credentails.js.dist`
 
-Running
--------
+## Running
+
+RUN on root:
+
+```
+docker-compose up -d --build
+```
 
 ```
 npm start --prefix ./frontend
 ```
 
-Backend
-=======
+# Backend
 
 Running
 
 ```
 make run dev -C ./backend
-````
-
+```

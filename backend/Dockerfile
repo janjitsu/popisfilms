@@ -1,10 +1,10 @@
 FROM golang:1.19-alpine AS build
 
-WORKDIR /src/
-COPY . go.* /src/
+WORKDIR /app
+COPY . go.* /app/
 RUN go mod download
 COPY . .
-WORKDIR /src/cmd/web/
+WORKDIR /app/cmd/web/
 RUN CGO_ENABLED=0 go build -o /bin/app
 
 FROM scratch
