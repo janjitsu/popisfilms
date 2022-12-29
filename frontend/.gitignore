@@ -27,3 +27,4 @@ src/credentials.js
 frontend/src/credentials.js
 #firebase
 .firebase/
+package-lock.json
