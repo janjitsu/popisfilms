@@ -12,7 +12,7 @@ import (
 
 func (app *application) serverError(w http.ResponseWriter, err error) {
 	trace := fmt.Sprintf("%s: %s\n%s", reflect.TypeOf(err), err.Error(), debug.Stack())
-	app.errorLog.Output(2, trace)
+	app.logger.Error(err, trace)
 	message := fmt.Sprintf("%s - %s", http.StatusText(http.StatusInternalServerError), err.Error())
 	response := models.NewErrorResponse(message)
 	JSONError(w, response, http.StatusInternalServerError)
@@ -22,7 +22,7 @@ func (app *application) clientError(w http.ResponseWriter, status int, err error
 	message := fmt.Sprintf("%s - %s", http.StatusText(status), err.Error())
 	response := models.NewErrorResponse(message)
 	responseString, _ := response.ToString()
-	app.infoLog.Printf("%d %s - %s", status, http.StatusText(status), responseString)
+	app.logger.Infof("%d %s - %s", status, http.StatusText(status), responseString)
 	JSONError(w, response, status)
 }
 
@@ -37,7 +37,7 @@ func (app *application) render(w http.ResponseWriter, status int, body any) {
 		app.serverError(w, err)
 	}
 	stringResponse, _ := responseBody.ToString()
-	app.infoLog.Printf("%d %s - %s", status, http.StatusText(status), stringResponse)
+	app.logger.Infof("%d %s - %s", status, http.StatusText(status), stringResponse)
 	w.WriteHeader(status)
 	w.Write(jsonResponse)
 }

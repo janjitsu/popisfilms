@@ -11,13 +11,15 @@ import (
 	firebase "firebase.google.com/go"
 	"firebase.google.com/go/auth"
 	"google.golang.org/api/option"
+
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 type application struct {
 	auth      *auth.Client
 	firestore *firestore.Client
-	infoLog   *log.Logger
-	errorLog  *log.Logger
+	logger    *zap.SugaredLogger
 }
 
 func main() {
@@ -45,14 +47,19 @@ func main() {
 	}
 	defer firestore.Close()
 
-	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
-	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	encoderCfg := zap.NewProductionEncoderConfig()
+	encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder
+	encoderCfg.EncodeLevel = zapcore.CapitalColorLevelEncoder
+	encoder := zapcore.NewConsoleEncoder(encoderCfg)
+	zapLogger := zap.New(zapcore.NewCore(encoder, zapcore.AddSync(os.Stdout), zap.InfoLevel))
+
+	logger := zapLogger.Sugar()
+	defer logger.Sync()
 
 	app := &application{
 		auth:      auth,
 		firestore: firestore,
-		infoLog:   infoLog,
-		errorLog:  errorLog,
+		logger:    logger,
 	}
 
 	srv := &http.Server{
@@ -60,7 +67,7 @@ func main() {
 		Handler: app.routes(),
 	}
 
-	app.infoLog.Printf("POPISFILMS - Starting server on %s", port)
+	app.logger.Infof("POPISFILMS - Starting server on %s", port)
 	err = srv.ListenAndServe()
 	log.Fatal(err)
 }
