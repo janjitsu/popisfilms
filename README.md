@@ -23,3 +23,8 @@ RUN on docker (TODO):
 ```
 docker-compose up -d --build
 ```
+
+
+See more ideas
+--------------
+https://medium.com/nerd-for-tech/webpack-react-optimised-from-scratch-da8f75024ba4
