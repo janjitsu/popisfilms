@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"runtime/debug"
 
-	"github.com/janjitsu/popisfilms/src/backend/internal/models"
+	"github.com/janjitsu/popisfilms/server/internal/models"
 )
 
 func (app *application) serverError(w http.ResponseWriter, err error) {

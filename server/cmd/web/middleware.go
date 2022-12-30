@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/janjitsu/popisfilms/src/backend/internal/models"
+	"github.com/janjitsu/popisfilms/server/internal/models"
 )
 
 func printHeaders(r *http.Request) {

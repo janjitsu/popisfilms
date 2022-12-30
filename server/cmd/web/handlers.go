@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/janjitsu/popisfilms/src/backend/internal/models"
+	"github.com/janjitsu/popisfilms/server/internal/models"
 )
 
 func (app *application) getFavorites(w http.ResponseWriter, r *http.Request) {
