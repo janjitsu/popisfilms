@@ -4,9 +4,10 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"popisfilms/internal/models"
 	"reflect"
 	"runtime/debug"
+
+	"github.com/janjitsu/popisfilms/src/backend/internal/models"
 )
 
 func (app *application) serverError(w http.ResponseWriter, err error) {

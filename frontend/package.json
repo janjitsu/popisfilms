@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
+    "backend": "go run ./src/backend/cmd/web",
     "eslint-fix": "eslint --fix \"src/webapp/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
