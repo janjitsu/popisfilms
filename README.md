@@ -1,20 +1,13 @@
-# Frontend
-
 ## Configuring firebase
 
-- add `frontend/src/credentails.js` with firebase config, copy it from
-  `frontend/src/credentails.js.dist`
+- add `src/webapp/credentails.js` with firebase config
+
+- add `src/backend/firebase-credentails.js` with firebase service account
 
 ## Running
 
-RUN on root:
-
 ```
-docker-compose up -d --build
-```
-
-```
-npm start --prefix ./frontend
+npm run start
 ```
 
 # Backend
@@ -22,5 +15,11 @@ npm start --prefix ./frontend
 Running
 
 ```
-make run dev -C ./backend
+npm run backend
+```
+
+RUN on docker (TODO):
+
+```
+docker-compose up -d --build
 ```

@@ -24,6 +24,7 @@ yarn-error.log*
 
 #credentials
 src/webapp/credentials.js
+src/backend/firebase-credentials.json
 #firebase
 .firebase/
 package-lock.json
