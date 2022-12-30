@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"popisfilms/internal/models"
 	"strings"
+
+	"github.com/janjitsu/popisfilms/src/backend/internal/models"
 )
 
 func printHeaders(r *http.Request) {

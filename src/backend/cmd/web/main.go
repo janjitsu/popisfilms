@@ -24,7 +24,7 @@ func main() {
 	port := ":8080"
 
 	ctx := context.Background()
-	sa := option.WithCredentialsFile("./firebase-credentials.json")
+	sa := option.WithCredentialsFile("./src/backend/firebase-credentials.json")
 
 	fb, err := firebase.NewApp(ctx, nil, sa)
 	if err != nil {
