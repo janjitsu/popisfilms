@@ -14,10 +14,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "BROWSER=none react-scripts start",
-    "build": "react-scripts build",
-    "server": "go run ./server/cmd/web",
-    "dev": "npm-run-all --parallel start server",
+    "start": "npm-run-all --parallel client server",
+    "client": "BROWSER=none react-scripts start",
+    "server": "air",
+    "build-client": "react-scripts build",
+    "build-server": "go build -o ./build/server ./server/cmd/web",
+    "build": "npm-run-all --sequential build-client build-server",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

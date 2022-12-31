@@ -24,7 +24,9 @@ yarn-error.log*
 
 #credentials
 src/credentials.js
-server/firebase-credentials.json
 #firebase
 .firebase/
 package-lock.json
+# server
+server/firebase-credentials.json
+tmp/

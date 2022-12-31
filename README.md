@@ -1,30 +1,30 @@
-## Configuring firebase
+# Popisfilms
+* Small app built with react and go to make lists of favorite movies
 
-- add `src/webapp/credentails.js` with firebase config
+## Local Setup
 
-- add `src/backend/firebase-credentails.js` with firebase service account
+### Configuring firebase
 
-## Running
+- add `src/credentails.js` with firebase config
+- add `server/firebase-credentails.js` with firebase service account
 
-```
-npm run start
-```
-
-# Backend
-
-Running
+### Install dependencies
 
 ```
-npm run backend
+apt install golang npm
+go install github.com/cosmtrek/air@latest
+go mod download
+npm install
 ```
 
-RUN on docker (TODO):
+## Running locally
+
+```
+npm run dev
+```
+
+## Running on docker (TODO):
 
 ```
 docker-compose up -d --build
 ```
-
-
-See more ideas
---------------
-https://medium.com/nerd-for-tech/webpack-react-optimised-from-scratch-da8f75024ba4
