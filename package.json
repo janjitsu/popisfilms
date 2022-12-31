@@ -15,8 +15,8 @@
   },
   "scripts": {
     "start": "npm-run-all --parallel client server",
-    "client": "BROWSER=none react-scripts start",
-    "server": "air",
+    "client": "react-scripts start",
+    "server": "export $(grep -v '^#' .env | xargs); air",
     "build-client": "react-scripts build",
     "build-server": "go build -o ./build/server ./server/cmd/web",
     "build": "npm-run-all --sequential build-client build-server",

@@ -23,10 +23,10 @@ type application struct {
 }
 
 func main() {
-	port := ":8080"
+	port := fmt.Sprintf(":%s", os.Getenv("SERVER_PORT"))
 
 	ctx := context.Background()
-	sa := option.WithCredentialsFile("./server/firebase-credentials.json")
+	sa := option.WithCredentialsFile(os.Getenv("FIREBASE_SERVICE_ACCOUNT_FILE"))
 
 	fb, err := firebase.NewApp(ctx, nil, sa)
 	if err != nil {
