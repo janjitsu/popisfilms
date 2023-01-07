@@ -25,10 +25,16 @@ func (app *application) logRequest(next http.Handler) http.Handler {
 	})
 }
 
-func (app *application) responseHeaders(next http.Handler) http.Handler {
+func (app *application) cors(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Headers", "*")
+		next.ServeHTTP(w, r)
+	})
+}
+
+func (app *application) jsonResponse(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		next.ServeHTTP(w, r)
 	})

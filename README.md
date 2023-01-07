@@ -5,8 +5,8 @@
 
 ### Configuring firebase
 
-- add `src/credentails.js` with firebase config
-- add `server/firebase-credentails.js` with firebase service account
+- add `.env` with firebase config to rootpath
+- add `firebase-service-account.json` with firebase service account to rootpath
 
 ### Install dependencies
 
@@ -20,7 +20,7 @@ npm install
 ## Running locally
 
 ```
-npm run dev
+npm start
 ```
 
 ## Running on docker (TODO):

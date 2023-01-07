@@ -20,6 +20,7 @@
     "build-client": "react-scripts build",
     "build-server": "go build -o ./build/server ./server/cmd/web",
     "build": "npm-run-all --sequential build-client build-server",
+    "prod": "export $(grep -v '^#' .env | xargs); ./build/server",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -1,4 +1,4 @@
-const BACKEND_URL = `http://localhost:8080`;
+const BACKEND_URL = `http://localhost:8080/api`;
 
 const authHeaders = (user) =>
     new Promise( async (resolve) => {

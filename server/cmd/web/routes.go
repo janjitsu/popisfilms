@@ -10,15 +10,15 @@ import (
 func (app *application) routes() http.Handler {
 	router := httprouter.New()
 
-	router.NotFound = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		app.notFound(w)
-	})
+	protected := alice.New(app.validateUserToken, app.requireAuthentication, app.jsonResponse)
+	router.Handler(http.MethodGet, "/api/favorites", protected.ThenFunc(app.getFavorites))
 
-	protected := alice.New(app.requireAuthentication)
+	standard := alice.New(app.cors, app.logRequest)
 
-	router.Handler(http.MethodGet, "/favorites", protected.ThenFunc(http.HandlerFunc(app.getFavorites)))
+	webapp := webapp{}
 
-	standard := alice.New(app.responseHeaders, app.logRequest, app.validateUserToken)
+	router.Handler(http.MethodGet, "/static/*filepath", webapp)
+	router.NotFound = webapp
 
 	return standard.Then(router)
 }
