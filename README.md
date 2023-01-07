@@ -23,8 +23,8 @@ npm install
 npm start
 ```
 
-## Running on docker (TODO):
+## Running on docker:
 
 ```
-docker-compose up -d --build
+docker-compose up --build
 ```
