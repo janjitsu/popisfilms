@@ -2,7 +2,6 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["src/webapp"],
   "exclude": ["node_modules"]
 }
 
